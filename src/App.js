@@ -1,15 +1,13 @@
 import React from 'react';
-import PlanetProvider from './Context/PlanetProvider';
+import Provider from './Context/Provider';
 import Table from './Components/Table';
 import './App.css';
 
 function App() {
   return (
-    <PlanetProvider>
-      <div>
-        <Table />
-      </div>
-    </PlanetProvider>
+    <Provider>
+      <Table />
+    </Provider>
   );
 }
 

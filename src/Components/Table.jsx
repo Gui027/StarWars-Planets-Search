@@ -1,38 +1,23 @@
 import React, { useContext } from 'react';
-import PlanetContext from '../Context/PlanetContext';
+import MyContext from '../Context/MyContext';
+import Planets from './Planets';
 
-export default function Table() {
-  const { data } = useContext(PlanetContext);
+function Table() {
+  const { planets, titles } = useContext(MyContext);
   return (
     <div>
-      <table>
+      <table border={ 1 }>
         <thead>
           <tr>
-            {data.length > 0 ? Object.keys(data[0]).map((element, index) => (
-              <th key={ index }>{element}</th>
-            )) : null }
+            {titles.map((title, id) => <th key={ id }>{title}</th>)}
           </tr>
         </thead>
         <tbody>
-          {data.map((element) => (
-            <tr key={ element.name }>
-              <td>{element.name}</td>
-              <td>{element.rotation_period}</td>
-              <td>{element.orbital_period}</td>
-              <td>{element.diameter}</td>
-              <td>{element.climate}</td>
-              <td>{element.gravity}</td>
-              <td>{element.terrain}</td>
-              <td>{element.surface_water}</td>
-              <td>{element.population}</td>
-              <td>{element.films}</td>
-              <td>{element.created}</td>
-              <td>{element.edited}</td>
-              <td>{element.url}</td>
-            </tr>
-          ))}
+          {planets.map((planet, i) => <Planets key={ i } planet={ planet } />)}
         </tbody>
       </table>
     </div>
   );
 }
+
+export default Table;
