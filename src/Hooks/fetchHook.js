@@ -3,6 +3,12 @@ import { useEffect, useState } from 'react';
 export default function usePlanets() {
   const [planets, setPlanets] = useState([]);
   const [titles, setTitles] = useState([]);
+  const [state, setState] = useState([]);
+  const [filters, setFilters] = useState('');
+
+  const handleChange = ({ target: { value } }) => {
+    setFilters(value);
+  };
 
   useEffect(() => {
     async function fetchResult() {
@@ -14,11 +20,12 @@ export default function usePlanets() {
         return resultFilter;
       });
       setPlanets(filteredData);
+      setState(filteredData); // criei estado para fazer o filter no input
       const keys = Object.keys(filteredData[0]);
       setTitles(keys);
     }
     fetchResult();
   }, []);
 
-  return { planets, setPlanets, titles };
+  return { planets, setPlanets, titles, filters, setFilters, handleChange, state };
 }

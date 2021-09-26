@@ -4,12 +4,17 @@ import MyContext from './MyContext';
 import usePlanets from '../Hooks/fetchHook';
 
 function Provider({ children }) {
-  const { planets, setPlanets, titles } = usePlanets();
+  const { planets, setPlanets, titles, filters, setFilters, handleChange } = usePlanets();
+
   const contextValue = {
     planets,
     setPlanets,
     titles,
+    filters,
+    setFilters,
+    handleChange,
   };
+
   return (
     <MyContext.Provider value={ contextValue }>
       {children}

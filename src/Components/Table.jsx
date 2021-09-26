@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import MyContext from '../Context/MyContext';
 import Planets from './Planets';
+import InputSearch from './InputSearch';
 
 function Table() {
-  const { planets, titles } = useContext(MyContext);
+  const { planets, titles, filters } = useContext(MyContext);
   return (
     <div>
+      <InputSearch />
       <table border={ 1 }>
         <thead>
           <tr>
@@ -13,7 +15,8 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {planets.map((planet, i) => <Planets key={ i } planet={ planet } />)}
+          {planets.filter((plan) => plan.name.toLowerCase().includes(filters))
+            .map((planet, i) => <Planets key={ i } planet={ planet } />)}
         </tbody>
       </table>
     </div>
