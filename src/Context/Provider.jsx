@@ -14,6 +14,8 @@ function Provider({ children }) {
     handleClick,
     filterByNumericValues,
     setFilterByNumericValues,
+    columnItems,
+    setColumnItems,
   } = usePlanets();
 
   const contextValue = {
@@ -26,6 +28,8 @@ function Provider({ children }) {
     handleClick,
     filterByNumericValues,
     setFilterByNumericValues,
+    columnItems,
+    setColumnItems,
   };
 
   return (

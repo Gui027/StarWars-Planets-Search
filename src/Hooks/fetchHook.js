@@ -6,9 +6,17 @@ export default function usePlanets() {
   // const [state, setState] = useState([]);
   const [filters, setFilters] = useState(''); // filtro do nome
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [columnItems, setColumnItems] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
 
   const handleClick = (value) => { // valores vindo do formulário
     setFilterByNumericValues([...filterByNumericValues, value]);
+    setColumnItems([...columnItems].filter((item) => item !== value.column));
   };
 
   const handleChange = ({ target: { value } }) => {
@@ -43,5 +51,6 @@ export default function usePlanets() {
     handleClick,
     filterByNumericValues,
     setFilterByNumericValues,
+    columnItems,
   };
 }

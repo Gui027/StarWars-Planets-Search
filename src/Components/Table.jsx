@@ -15,8 +15,8 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {planets.filter((plan) => {
-            const validation = filterByNumericValues.every((filter) => {
+          {planets.filter((plan) => { // Recebi ajuda na lógica, Leonardo da turma A.
+            const validation = filterByNumericValues.every((filter) => { // every testa se todos os elementos do array passam por um teste implementado por uma função fornecida. Ele retorna true ou false baseado na condição especificada.
               const { column, comparison, value } = filter;
               if (comparison === 'maior que') {
                 return Number(plan[column]) > Number(value);
