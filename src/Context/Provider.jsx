@@ -4,7 +4,17 @@ import MyContext from './MyContext';
 import usePlanets from '../Hooks/fetchHook';
 
 function Provider({ children }) {
-  const { planets, setPlanets, titles, filters, setFilters, handleChange } = usePlanets();
+  const {
+    planets,
+    setPlanets,
+    titles,
+    filters,
+    setFilters,
+    handleChange,
+    handleClick,
+    filterByNumericValues,
+    setFilterByNumericValues,
+  } = usePlanets();
 
   const contextValue = {
     planets,
@@ -13,6 +23,9 @@ function Provider({ children }) {
     filters,
     setFilters,
     handleChange,
+    handleClick,
+    filterByNumericValues,
+    setFilterByNumericValues,
   };
 
   return (

@@ -4,7 +4,7 @@ import Planets from './Planets';
 import InputSearch from './InputSearch';
 
 function Table() {
-  const { planets, titles, filters } = useContext(MyContext);
+  const { planets, titles, filters, filterByNumericValues } = useContext(MyContext);
   return (
     <div>
       <InputSearch />
@@ -15,7 +15,23 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {planets.filter((plan) => plan.name.toLowerCase().includes(filters))
+          {planets.filter((plan) => {
+            const validation = filterByNumericValues.every((filter) => {
+              const { column, comparison, value } = filter;
+              if (comparison === 'maior que') {
+                return Number(plan[column]) > Number(value);
+              }
+              if (comparison === 'menor que') {
+                return Number(plan[column]) < Number(value);
+              }
+              if (comparison === 'igual a') {
+                return Number(plan[column]) === Number(value);
+              }
+              return false;
+            });
+            return validation;
+          })
+            .filter((plan) => plan.name.toLowerCase().includes(filters))
             .map((planet, i) => <Planets key={ i } planet={ planet } />)}
         </tbody>
       </table>

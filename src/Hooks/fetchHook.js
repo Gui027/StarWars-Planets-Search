@@ -3,8 +3,13 @@ import { useEffect, useState } from 'react';
 export default function usePlanets() {
   const [planets, setPlanets] = useState([]);
   const [titles, setTitles] = useState([]);
-  const [state, setState] = useState([]);
-  const [filters, setFilters] = useState('');
+  // const [state, setState] = useState([]);
+  const [filters, setFilters] = useState(''); // filtro do nome
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+
+  const handleClick = (value) => { // valores vindo do formulário
+    setFilterByNumericValues([...filterByNumericValues, value]);
+  };
 
   const handleChange = ({ target: { value } }) => {
     setFilters(value);
@@ -20,12 +25,23 @@ export default function usePlanets() {
         return resultFilter;
       });
       setPlanets(filteredData);
-      setState(filteredData); // criei estado para fazer o filter no input
+      // setState(filteredData); // criei estado para fazer o filter no input
       const keys = Object.keys(filteredData[0]);
       setTitles(keys);
     }
     fetchResult();
   }, []);
 
-  return { planets, setPlanets, titles, filters, setFilters, handleChange, state };
+  return {
+    planets,
+    setPlanets,
+    titles,
+    filters,
+    setFilters,
+    handleChange,
+    // state,
+    handleClick,
+    filterByNumericValues,
+    setFilterByNumericValues,
+  };
 }
